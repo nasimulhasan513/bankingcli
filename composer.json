@@ -4,7 +4,9 @@
             "App\\": "app/"
         },
         "files": [
-            "helpers/logger.php"
+            "helpers/logger.php",
+            "helpers/view.php",
+            "helpers/session.php"
         ]
     }
 }

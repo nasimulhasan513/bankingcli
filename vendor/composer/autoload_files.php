@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'b85fe277c4712f6cf4552ce8dcab2b9c' => $baseDir . '/helpers/logger.php',
+    '0c6037ae6db779bcef30017b21910dab' => $baseDir . '/helpers/view.php',
+    'be3eafcb6e09c09188f55a2cde8ccd37' => $baseDir . '/helpers/session.php',
 );

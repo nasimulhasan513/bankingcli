@@ -2,40 +2,39 @@
 
 namespace App\Model;
 
-class User
+class User extends Model
 {
-    public $name;
-    public $email;
-    public $password;
-    public $balance;
 
-    public $role;
-
-    public function __construct($name, $email, $password, $balance, $role)
+    public function getUsers()
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->password = $password;
-        $this->balance = $balance;
-        $this->role = $role;
+        $sql = "SELECT * FROM users";
+        $result = $this->select($sql);
+        $users = [];
+        if (count($result) > 0) {
+            $users = $result;
+        }
+        return $users;
     }
 
-    public function comparePassword($password)
+    public function createUser($name, $email, $password, $balance, $role)
     {
-        return $this->password == $password;
+        $sql = "INSERT INTO users (name, email, password, balance, role) VALUES ('$name', '$email', '$password', '$balance', '$role')";
+        $result = $this->insert($sql);
+        return $result;
     }
 
-    public function showUser()
+    public function checkExist($email)
     {
-        colorLog("Name: {$this->name}", 'green');
-        colorLog("Email: {$this->email}", 'green');
-        colorLog("Balance: {$this->balance}", 'green');
-        colorLog("------------------------------", 'yellow');
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $result = $this->select($sql);
+        return $result;
     }
 
-    public function isAdmin()
+    public function authenticate($email, $password)
     {
-        return $this->role == 'admin';
+        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+        $result = $this->select($sql);
+        return $result;
     }
 
 }
