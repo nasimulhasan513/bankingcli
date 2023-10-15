@@ -5,8 +5,14 @@ This is a simple CLI app that simulates a banking system. It allows users to cre
 ### Installation
 
 1. Clone the repository
-2. Run `php user.php` for registering user and create account and for others options
-3. Run `php admin.php` for create admin account
+2. Run `php migration.php` for create database  
+3. Run `php -S localhost:8000 -t public` to start the server
+
+### Basic Usage
+1. To create user account use simply webview of registration form
+2. To create an admin account please change role in database to `admin` for any user
+3. If role is `admin` then you will be redirected to admin dashboard
+4. If role is `user` then you will be redirected to user dashboard
 
 ### Common Features
 1. User can create account
@@ -20,6 +26,7 @@ This is a simple CLI app that simulates a banking system. It allows users to cre
 1. Admin can view all users
 2. Admin can view all accounts
 3. Admin can view all transactions
+
 
 ### Technologies Used
 1. PHP

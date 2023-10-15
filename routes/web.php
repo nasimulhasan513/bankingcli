@@ -5,7 +5,7 @@ use App\Controllers\AuthController;
 use App\Controllers\CustomerController;
 
 return [
-    "/" => [AuthController::class, 'index'],
+    "/" => [AuthController::class, 'login'],
     '/login' => [AuthController::class, 'login'],
     '/register' => [AuthController::class, 'register'],
     '/logout' => [AuthController::class, 'logout'],

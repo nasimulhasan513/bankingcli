@@ -23,10 +23,8 @@ class AuthController extends Controller
             $email = $_POST['email'];
             $password = $_POST['password'];
             $user = new User();
-
             // check if email already exists
             if ($user->checkExist($email)) {
-
                 return view('auth/register', [
                     'errors' => ['Email already exists!'],
                 ]);
@@ -50,11 +48,13 @@ class AuthController extends Controller
             $user = $user->authenticate($email, $password)[0];
 
             if ($user) {
-
                 // set session
                 setuser($user);
-
-                return redirect('/customer/dashboard');
+                if ($user['role'] == 'admin') {
+                    return redirect('/admin/customers');
+                } else {
+                    return redirect('/customer/dashboard');
+                }
             } else {
                 $errors = ['Email or password is incorrect!'];
             }

@@ -9,6 +9,21 @@ class AdminController extends Controller
 
     public function add_customer()
     {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $name = $_POST['first-name'] . ' ' . $_POST['last-name'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $user = new User();
+            // check if email already exists
+            if ($user->checkExist($email)) {
+                return view('features/admin/add_customer', [
+                    'errors' => ['Email already exists!'],
+                ]);
+            }
+
+            $user->createUser($name, $email, $password, 0, 'user');
+            return redirect('/admin/customers');
+        }
 
         return view('features/admin/add_customer');
     }
